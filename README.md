@@ -27,6 +27,12 @@ In this example:
 ```bash
 sass --watch app/sass:public/stylesheets
 sass --watch src/assets/scss/argon-design-system/:src/assets/css/argon-design-system/
+
+# now that the file has been moved
+# do this
+
+sass --watch .scss/:src/assets/css/argon-design-system/
+
 ```
 
 ## Absolute Imports Enabled

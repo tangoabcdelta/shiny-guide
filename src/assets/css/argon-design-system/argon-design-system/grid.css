@@ -1,0 +1,20 @@
+/* Error: Undefined mixin.
+ *   ,
+ * 1 | / @include media-breakpoint-up(lg) {
+ * 2 | |     .container-lg {
+ * 3 | |         max-width: 1160px;
+ * 4 | |     }
+ * 5 | \ }
+ *   '
+ *   .scss/argon-design-system/grid.scss 1:1  root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Undefined mixin.\a   \2577 \a 1 \2502  \250c  @include media-breakpoint-up(lg) {\a 2 \2502  \2502      .container-lg {\a 3 \2502  \2502          max-width: 1160px;\a 4 \2502  \2502      }\a 5 \2502  \2514  }\a   \2575 \a   .scss/argon-design-system/grid.scss 1:1  root stylesheet";
+}

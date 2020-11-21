@@ -1,0 +1,25 @@
+/* Error: Undefined mixin.
+ *   ,
+ * 1 | / @include media-breakpoint-down(md) {
+ * 2 | |   .dropdown-menu.show{
+ * 3 | |     position: static !important;
+ * 4 | |     will-change: unset !important;
+ * 5 | |     top: 100% !important;
+ * 6 | |     left: 0px !important;
+ * 7 | |     transform: unset !important;
+ * 8 | |   }
+ * 9 | \ }
+ *   '
+ *   .scss/react/custom/_dropdown.scss 1:1    @import
+ *   .scss/react/react-differences.scss 21:9  root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Undefined mixin.\a   \2577 \a 1 \2502  \250c  @include media-breakpoint-down(md) {\a 2 \2502  \2502    .dropdown-menu.show{\a 3 \2502  \2502      position: static !important;\a 4 \2502  \2502      will-change: unset !important;\a 5 \2502  \2502      top: 100% !important;\a 6 \2502  \2502      left: 0px !important;\a 7 \2502  \2502      transform: unset !important;\a 8 \2502  \2502    }\a 9 \2502  \2514  }\a   \2575 \a   .scss/react/custom/_dropdown.scss 1:1    @import\a   .scss/react/react-differences.scss 21:9  root stylesheet";
+}

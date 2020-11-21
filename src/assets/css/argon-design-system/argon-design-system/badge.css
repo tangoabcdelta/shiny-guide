@@ -1,0 +1,18 @@
+/* Error: Undefined mixin.
+ *     ,
+ * 235 | @include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
+ *     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *     '
+ *   .scss/argon-design-system/variables.scss 235:1  @import
+ *   .scss/argon-design-system/badge.scss 1:9        root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: 'Error: Undefined mixin.\a     \2577 \a 235 \2502  @include _assert-ascending($grid-breakpoints, "$grid-breakpoints");\a     \2502  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a     \2575 \a   .scss/argon-design-system/variables.scss 235:1  @import\a   .scss/argon-design-system/badge.scss 1:9        root stylesheet';
+}
