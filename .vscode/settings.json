@@ -2,11 +2,23 @@
   "files.associations": {
     "*.jsx": "javascriptreact"
   },
+  "editor.multiCursorModifier": "alt",
+  "editor.renderWhitespace": "all",
+  "editor.minimap.enabled": true,
   "editor.insertSpaces": true,
   "editor.detectIndentation": true,
   "editor.tabSize": 2,
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
-  }
+  },
+  "window.zoomLevel": -0.4,
+  "editor.fontSize": 13,
+  "[Log]": {
+    "editor.fontSize": 13
+  },
+  "terminal.integrated.fontSize": 13,
+  "workbench.statusBar.visible": true,
+  "workbench.sideBar.location": "left",
+  "files.autoSave": "off"
 }

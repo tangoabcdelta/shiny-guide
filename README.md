@@ -2,6 +2,60 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Node Sass problems
+
+Node Sass = Pain in the \*ss.
+
+### Instructions
+
+You can watch individual files or directories with the --watch flag.
+The watch flag tells Sass to watch your source files for changes.
+And re-compile CSS each time you save your Sass.
+If you wanted to watch (instead of manually build) your `input.scss` file,
+you'd just add the watch flag to your command, like so:
+
+```bash
+# syntax:sass --watch src/assets/scss/argon-design-system/:src/assets/css/argon-design-system/
+# sass --watch input.scss output.css
+
+sass --watch src/assets/scss/argon-design-system/nav.scss src/assets/css/argon-design-system/nav.css
+```
+
+You can watch and output to directories by using folder paths as your input and output, and separating them with a colon.
+In this example:
+
+```bash
+sass --watch app/sass:public/stylesheets
+sass --watch src/assets/scss/argon-design-system/:src/assets/css/argon-design-system/
+```
+
+## Absolute Imports Enabled
+
+rootdir set by using: `jsconfig.json`
+`rootdir`: `src`
+`sample`: `src/assets/scss/argon-design-system/input-group.scss`
+
+You can configure your application to support importing modules using absolute paths. This can be done by configuring a jsconfig.json or tsconfig.json file in the root of your project. If you're using TypeScript in your project, you will already have a tsconfig.json file.
+
+Below is an example `jsconfig.json` file for a JavaScript project. You can create the file if it doesn't already exist:
+https://create-react-app.dev/docs/importing-a-component/#absolute-imports
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": "src"
+  },
+  "include": ["src"]
+}
+```
+
+If you're using TypeScript, you can configure the baseUrl setting inside the compilerOptions of your project's tsconfig.json file.
+
+Now that you've configured your project to support absolute imports, if you want to import a module located at src/components/Button.js, you can import the module like so:
+
+import Button from 'components/Button';
+For more information on these configuration files, see the jsconfig.json reference and tsconfig.json reference documentation.
+
 ## Available Scripts
 
 In the project directory, you can run:
