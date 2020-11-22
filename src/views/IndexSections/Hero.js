@@ -19,6 +19,7 @@ import React from "react";
 
 // reactstrap components
 import { Button, Container, Row, Col } from "reactstrap";
+import LazyImage from "components/atoms/lazyimage/LazyImage.js";
 
 class Hero extends React.Component {
   render() {
@@ -90,7 +91,11 @@ class Hero extends React.Component {
                         alt="..."
                         className="ml-1"
                         style={{ height: "28px" }}
-                        src={"assets/img/brand/creativetim-white-slim.png"}
+                        src={
+                          <LazyImage
+                            src={"assets/img/brand/creativetim-white-slim.png"}
+                          />
+                        }
                       />
                     </div>
                   </Col>

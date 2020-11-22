@@ -36,7 +36,7 @@ import {
   Container,
   Row,
   Col,
-  UncontrolledTooltip
+  UncontrolledTooltip,
 } from "reactstrap";
 
 class DemoNavbar extends React.Component {
@@ -47,18 +47,18 @@ class DemoNavbar extends React.Component {
   }
   state = {
     collapseClasses: "",
-    collapseOpen: false
+    collapseOpen: false,
   };
 
   onExiting = () => {
     this.setState({
-      collapseClasses: "collapsing-out"
+      collapseClasses: "collapsing-out",
     });
   };
 
   onExited = () => {
     this.setState({
-      collapseClasses: ""
+      collapseClasses: "",
     });
   };
 
@@ -183,15 +183,34 @@ class DemoNavbar extends React.Component {
                       <DropdownItem to="/profile-page" tag={Link}>
                         Profile
                       </DropdownItem>
+                      <DropdownItem to="/profile-2-page" tag={Link}>
+                        Profile 2
+                      </DropdownItem>
                       <DropdownItem to="/login-page" tag={Link}>
                         Login
                       </DropdownItem>
                       <DropdownItem to="/register-page" tag={Link}>
                         Register
+                      </DropdownItem>{" "}
+                      <DropdownItem to="/bikes-page" tag={Link}>
+                        Bikes
+                      </DropdownItem>
+                      <DropdownItem to="/resume-1-page" tag={Link}>
+                        Resume 1
+                      </DropdownItem>
+                      <DropdownItem to="/resume-2-page" tag={Link}>
+                        Resume 2
+                      </DropdownItem>
+                      <DropdownItem to="/demo-components-page" tag={Link}>
+                        Demo Components
                       </DropdownItem>
                     </DropdownMenu>
                   </UncontrolledDropdown>
+                  <NavLink href="/bikes-page" className="nav-link">
+                    <span className="nav-link-inner--text">Bikes</span>
+                  </NavLink>
                 </Nav>
+
                 <Nav className="align-items-lg-center ml-lg-auto" navbar>
                   <NavItem>
                     <NavLink

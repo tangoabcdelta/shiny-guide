@@ -2,11 +2,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+This project was deployed on netlify at [hopeful-hawking-554179](https://hopeful-hawking-554179.netlify.app)
+
 ## Node Sass problems
 
 Node Sass = Pain in the \*ss.
 
-### Instructions
+### To deal with the node-sass issues
 
 You can watch individual files or directories with the --watch flag.
 The watch flag tells Sass to watch your source files for changes.
@@ -59,8 +61,85 @@ If you're using TypeScript, you can configure the baseUrl setting inside the com
 
 Now that you've configured your project to support absolute imports, if you want to import a module located at src/components/Button.js, you can import the module like so:
 
-import Button from 'components/Button';
+```js
+import Button from "components/Button";
+```
+
 For more information on these configuration files, see the jsconfig.json reference and tsconfig.json reference documentation.
+
+### Issues with Create-React-App
+
+The default webpack configuration can not be altered.
+So, you must use `https://github.com/timarney/react-app-rewired`
+This helps you alter the configuration without needing to `eject` the code.
+
+#### `[object Module]` instead of image links after Webpack processing
+
+It's because the asset urls with require statements expect CommonJS modules.
+While the recent major release of url-loader or file-loaders generates ES modules by default.
+
+`<img src="[object Module]" alt=""/>`
+
+**Solution:**
+
+- Set `esModule: false` option for `file-loader`.
+- Update `style-loader` to latest version
+
+If you use `file-loader`, upgrade it to 6.0.0 version and specify esModule: false in options:
+And enable the common js format just for Images
+
+```js
+
+{
+  test: /\.(png|jpe?g|gif|svg)$/,
+  use: [
+    {
+      loader: 'file-loader',
+      options: {
+        name: '[name].[contenthash].[ext]',
+        outputPath: 'static/img',
+        esModule: false // <- here
+      }
+    }
+  ]
+}
+```
+
+**Instructions to Disable / Enable `esModule`:**
+
+By default, file-loader generates JS modules that use the ES modules syntax.
+There are some cases in which using ES modules is beneficial, like in the case of module concatenation and tree shaking.
+
+**Read More:**
+https://github.com/webpack-contrib/file-loader#esmodule
+
+Type:
+`Boolean`
+
+Default:
+`true`
+
+If you want to enable a `CommonJS` module syntax, then use the following in your `webpack.config.js`:
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              esModule: false,
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
+```
 
 ## Available Scripts
 
