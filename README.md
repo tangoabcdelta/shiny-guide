@@ -6,7 +6,58 @@ This project was deployed on netlify at [hopeful-hawking-554179](https://hopeful
 
 ## Release
 
-### Create an annotated tag in git:
+### Step 0: Adhere to conventional commit standards
+
+- https://www.conventionalcommits.org/en/v1.0.0/
+- **summary:** https://www.conventionalcommits.org/en/v1.0.0/#summary
+
+The commit message should be structured as follows:
+
+    <type>[optional scope]: <description>
+
+    [optional body]
+
+    [optional footer(s)]
+
+**Type:**
+
+    build:
+    chore:
+    ci:
+    docs:
+    style:
+    refactor:
+    perf:
+    test:
+    feat:
+    fix:
+    BREAKING CHANGE: !
+
+**Examples:**
+
+    feat: allow provided config object to extend other configs
+    BREAKING CHANGE: `extends` key in config file is now used for extending other config files
+
+### Step 1: Create a changelog
+
+Run `yarn changelog`
+
+    yarn changelog
+    # should generate a file akin to `changelog.v0.1.6.md`
+    # follows the template contained within the `scripts` folder
+    # has a dev dependency: `git-release-notes`
+
+### Step 2: Create <patch | minor | major> releases:
+
+- Run `npm version <insert type of change>`
+- The type of change can be any from these: `patch`, `minor`, `major`
+- It'll obey the sem-ver and it will bump the number accordingly
+
+  npm version patch
+  npm version minor
+  npm version major
+
+#### Create an annotated tag in git:
 
 To create an annotated tag in git run the following command in terminal:
 
@@ -16,6 +67,29 @@ To create an annotated tag in git run the following command in terminal:
 
     # to push a single tag
     git push origin <tag>
+
+#### Count Lines of code
+
+    cloc $(git ls-files)
+
+    # or
+    cloc . --exclude-dir=node_modules --exclude-ext=JSON
+
+    # to save the output in a file
+    cloc . --exclude-dir=node_modules --exclude-ext=JSON --out=results.txt
+
+## Generate Dependency Graph
+
+- Install the pre-requisites
+
+```bash
+sudo apt install graphviz
+yarn add -D dependency-cruiser@9.23.1
+```
+
+- Run `yarn deps`
+- It'll run `depcruise --exclude "^node_modules" --output-type dot src | dot -T svg > dependencygraph.$(git describe --tags --abbrev=0).svg` under the hood
+- Commit the `dependencygraph.vx.x.x` file
 
 ## ESLint
 
@@ -521,4 +595,88 @@ Object.defineProperty(Bork, "b", {
  |- webpack.prod.js
 ```
 
+## Origin:
+
 git@github.com:tangoabcdelta/shiny-guide.git
+
+## Quick Links:
+
+- https://stackoverflow.com/questions/59786811/typewriter-effect-in-react
+  - https://codesandbox.io/s/boring-greider-824nd
+  - https://github.com/TaylorBriggs/react-native-typewriter
+  - https://github.com/ianbjorndilling/react-typewriter
+  - https://www.npmjs.com/package/typewriter-effect
+  - https://pard0x.dev/
+
+#### The Hotwire website
+
+- https://twitter.com/dhh/status/1341420143239450624?s=20
+  - https://github.com/hotwired/hotwire-site
+
+* https://web.dev/web-otp/
+* https://medium.com/oyotech/implementing-automatic-sms-verification-for-websites-oyo-9375feba0749
+
+#### Webpack
+
+- https://webpack.js.org/guides/tree-shaking/
+
+- https://webpack.js.org/guides/production/
+
+```json
+ |- webpack-merge
+ |- webpack.config.js
+ |- webpack.common.js
+ |- webpack.dev.js
+ |- webpack.prod.js
+```
+
+#### usefetch hooks
+
+- https://github.com/ava/use-http#usefetch
+
+### Examples
+
+```js
+const [value, setValueAndReRender] = React.useState("initial value");
+function usePersistentValue(initialValue) {
+  return React.useState({
+    current: initialValue,
+  })[0];
+}
+JS Tip - React’s useRef Hook
+The marketing pitch for React.useState is that it allows you to add state to function components. This is true, but we can break it down even further. Fundamentally, the useState Hook gives you two things - a value that will persist across renders and an API to update that value and trigger a re-render.
+
+const [value, setValueAndReRender] = React.useState(
+
+  'initial value'
+
+)
+
+When building UI, both are necessary. Without the ability to persist the value across renders, you’d lose the ability to have dynamic data in your app. Without the ability to update the value and trigger a re-render, the UI would never update.
+
+Now, what if you had a use case where you weren’t dealing with any UI, so you didn’t care about re-rendering, but you did need to persist a value across renders? In this scenario, it’s like you need the half of useState that lets you persist a value across renders but not the other half that triggers a re-render — Something like this.
+
+function usePersistentValue (initialValue) {
+
+  return React.useState({
+
+    current: initialValue
+
+  })[0]
+
+}
+
+Spoiler alert, the functionality of our custom usePersistentValue Hook is very similar to the built-in React.useRef Hook.
+
+If you want to add state to your component that persists across renders and can trigger a re-render when it’s updated, go with useState (or useReducer). If you want to add state to your component that persists across renders but doesn’t trigger a re-render when it’s updated, go with useRef.
+
+For more info on useRef (and a deeper explanation of how useState is similar to useRef), visit Understanding React’s useRef Hook
+```
+
+## Pre-deployment activities
+
+-
+
+- Use `husky` to enable pre-commit hooks which will prevent a developer to commit code into the directory
+  - This can be used to enforce `.eslint` rules
+  - This can also be used to run unit tests

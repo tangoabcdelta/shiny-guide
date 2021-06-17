@@ -1,36 +1,51 @@
 import React from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
-import logo from "./logo.svg";
 import "./App.css";
+
+import ROUTES from "./config/routes";
 import Home from "./pages/Home";
+import logo from "./logo.svg";
 
 function App() {
+  const F = ROUTES.map((item, index) => {
+    return (
+      // <item.component
+      //   key={`${item.name}-${index}`}
+      //   data-attr={`${item.name}-${index}`}
+      // />
+
+      <Route
+        path={`/${item.path}`}
+        exact
+        render={(props) => (
+          <item.component {...props} key={`${item.name}-${index}`} />
+        )}
+      />
+    );
+  });
+  debugger;
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/" exact render={(props) => <Home {...props} />} />
-        <Redirect to="/" />
-      </Switch>
-      <React.Fragment>
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>
-              Edit <code>src/App.js</code> and save to reload.
-            </p>
-            <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
-          </header>
-        </div>
-      </React.Fragment>
-    </BrowserRouter>
+    <>
+      <nav>
+        <a className="App-link" href="/" rel="noopener noreferrer">
+          HOME
+        </a>
+
+        <a className="App-link" href="/movies" rel="noopener noreferrer">
+          MOVIES
+        </a>
+      </nav>
+      <BrowserRouter>
+        <Switch>
+          {/* <Route path="/" exact render={(props) => <Home {...props} />} /> */}
+          {/* <Redirect to="/" /> */}
+          {/* <Route path="/" exact render={(props) => <Home {...props} />} /> */}
+          {F}
+        </Switch>
+      </BrowserRouter>
+      <img src={logo} className="App-logo" alt="logo" />
+    </>
   );
 }
 
